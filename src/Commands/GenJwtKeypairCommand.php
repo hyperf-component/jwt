@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 /**
- * test.
- *
- * @link     https://www.guandeng.io
+ * This file is part of Hyperf Component.
  */
 
 namespace HyperfComponent\Jwt\Commands;
