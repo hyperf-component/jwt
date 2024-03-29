@@ -20,27 +20,13 @@ class Jwt implements JwtInterface
 {
     use CustomClaims;
 
-    /**
-     * @var Manager
-     */
-    protected $manager;
+    protected Manager $manager;
 
-    /**
-     * @var RequestParserInterface
-     */
-    protected $requestParser;
+    protected RequestParserInterface $requestParser;
 
-    /**
-     * @var ServerRequestInterface
-     */
-    protected $request;
+    protected ServerRequestInterface $request;
 
-    /**
-     * Lock the subject.
-     *
-     * @var bool
-     */
-    protected $lockSubject = true;
+    protected bool $lockSubject = true;
 
     public function __construct(
         ManagerInterface $manager,

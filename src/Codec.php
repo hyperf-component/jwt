@@ -285,7 +285,7 @@ class Codec implements CodecInterface
     protected function addClaim(Builder $builder, string $key, $value)
     {
         match ($key) {
-            RegisteredClaims::ID => $builder->identifiedBy((string) $value),
+            HyperfComponent\Jwt\RegisteredClaims::ID => $builder->identifiedBy((string) $value),
             RegisteredClaims::EXPIRATION_TIME => $builder->expiresAt(DateTimeImmutable::createFromFormat('U', (string) $value)),
             RegisteredClaims::NOT_BEFORE => $builder->canOnlyBeUsedAfter(DateTimeImmutable::createFromFormat('U', (string) $value)),
             RegisteredClaims::ISSUED_AT => $builder->issuedAt(DateTimeImmutable::createFromFormat('U', (string) $value)),

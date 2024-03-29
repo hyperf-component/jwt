@@ -19,6 +19,10 @@ class QueryString implements ParserContract
     public function parse(ServerRequestInterface $request): ?string
     {
         $data = data_get($request->getQueryParams(), $this->key);
-        return empty($data) === null ? null : (string) $data;
+        if ($data === null || $data === '') {
+            return null;
+        }
+
+        return (string) $data;
     }
 }

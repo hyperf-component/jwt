@@ -10,25 +10,44 @@ namespace HyperfComponent\Jwt;
 use Hyperf\Context\ApplicationContext;
 use Hyperf\Contract\ContainerInterface;
 use HyperfComponent\Jwt\Contracts\JwtInterface;
+use InvalidArgumentException;
 
-if (! function_exists('container')) {
-    /**
-     * 获取容器实例.
-     */
-    function container(): ContainerInterface
-    {
-        return ApplicationContext::getContainer();
+/**
+ * Get the available container instance.
+ *
+ * @template T
+ *
+ * @param class-string<T> $abstract
+ *
+ * @return ContainerInterface|T
+ */
+function di(?string $abstract = null, array $parameters = [])
+{
+    if (ApplicationContext::hasContainer()) {
+        /** @var ContainerInterface $container */
+        $container = ApplicationContext::getContainer();
+
+        if (is_null($abstract)) {
+            return $container;
+        }
+
+        if (count($parameters) == 0 && $container->has($abstract)) {
+            return $container->get($abstract);
+        }
+
+        return $container->make($abstract, $parameters);
     }
+
+    if (is_null($abstract)) {
+        throw new InvalidArgumentException('Invalid argument $abstract');
+    }
+
+    return new $abstract(...array_values($parameters));
 }
 
 if (! function_exists('jwt')) {
-    /**
-     * 获取Redis实例.
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
-     */
     function jwt(): Jwt
     {
-        return container()->get(JwtInterface::class);
+        return di()->get(JwtInterface::class);
     }
 }
