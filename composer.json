@@ -1,0 +1,42 @@
+{
+    "name": "hyperf-component/jwt",
+    "type": "library",
+    "description": "The jwt component for Hyperf.",
+    "keywords": [
+        "hyperf",
+        "v3.1"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "guandeng",
+            "email": "guandeng@hotmail.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/hyperf-component/components/issues",
+        "source": "https://github.com/hyperf-component/components"
+    },
+    "autoload": {
+        "files": [
+            "src/Functions.php"
+        ],
+        "psr-4": {
+            "HyperfComponent\\Jwt\\": "src/"
+        }
+    },
+    "require": {
+        "ext-openssl": "*",
+        "lcobucci/jwt": "~5.3.0"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "hyperf": {
+            "config": "HyperfComponent\\Jwt\\ConfigProvider"
+        },
+        "branch-alias": {
+            "dev-main": "3.1-dev"
+        }
+    }
+}
