@@ -10,4 +10,4 @@ jobs:
     steps:
     - uses: superbrothers/close-pull-request@v3
       with:
-        comment: "Thank you for your pull request. However, you have submitted this PR on the HyperfComponent organization which is a read-only sub split of `HyperfComponent/components`. Please submit your PR on the https://github.com/HyperfComponent/components repository.<br><br>Thanks!"
+        comment: "Thank you for your pull request. However, you have submitted this PR on the HyperfComponent organization which is a read-only sub split of `hyperf-component/components`. Please submit your PR on the https://github.com/hyperf-component/components repository.<br><br>Thanks!"
