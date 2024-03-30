@@ -14,17 +14,13 @@ class HyperfCache implements StorageInterface
 {
     /**
      * The cache repository contract.
-     *
-     * @var CacheInterface
      */
-    protected $cache;
+    protected CacheInterface $cache;
 
     /**
      * The used cache tag.
-     *
-     * @var string
      */
-    protected $tag;
+    protected string $tag;
 
     /**
      * Constructor.
@@ -57,9 +53,7 @@ class HyperfCache implements StorageInterface
 
     public function flush(): void
     {
-        method_exists($cache = $this->cache, 'clearPrefix')
-            ? $cache->clearPrefix($this->tag)
-            : $cache->clear();
+        $this->cache->clear();
     }
 
     protected function cache(): CacheInterface
