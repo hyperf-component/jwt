@@ -15,7 +15,6 @@ use HyperfComponent\Jwt\Contracts\JwtSubjectInterface;
 use HyperfComponent\Jwt\Contracts\ManagerInterface;
 use HyperfComponent\Jwt\Contracts\RequestParser\RequestParserInterface;
 use HyperfComponent\Jwt\Exceptions\JwtException;
-use Psr\Http\Message\ServerRequestInterface;
 
 class Jwt implements JwtInterface
 {
