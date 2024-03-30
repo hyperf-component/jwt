@@ -16,10 +16,8 @@ trait DatetimeTrait
 {
     /**
      * Time leeway in seconds.
-     *
-     * @var int
      */
-    protected $leeway = 0;
+    protected int $leeway = 0;
 
     /**
      * Set the claim value, and call a validate method.
@@ -42,7 +40,7 @@ trait DatetimeTrait
         return parent::setValue($value);
     }
 
-    public function validateCreate($value)
+    public function validateCreate($value): mixed
     {
         if (! is_numeric($value)) {
             throw new InvalidClaimException($this);

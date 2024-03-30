@@ -11,6 +11,7 @@ use HyperfComponent\Jwt\Blacklist;
 use HyperfComponent\Jwt\Exceptions\JwtException;
 use HyperfComponent\Jwt\Exceptions\TokenBlacklistedException;
 use HyperfComponent\Jwt\Payload;
+use HyperfComponent\Jwt\PayloadFactory;
 use HyperfComponent\Jwt\Token;
 
 interface ManagerInterface
@@ -25,7 +26,7 @@ interface ManagerInterface
      *
      * @throws TokenBlacklistedException
      */
-    public function decode(Token $token, bool $checkBlacklist = true): Payload;
+    public function decode(Token $token, bool $checkBlacklist = true, bool $ignoreExpired = false): Payload;
 
     /**
      * Refresh a Token and return a new Token.
@@ -33,7 +34,7 @@ interface ManagerInterface
      * @throws TokenBlacklistedException
      * @throws JwtException
      */
-    public function refresh(Token $token, bool $forceForever = false): Token;
+    public function refresh(Token $token, bool $forceForever = false, array $customClaims = []): Token;
 
     /**
      * Invalidate a Token by adding it to the blacklist.
@@ -41,4 +42,8 @@ interface ManagerInterface
      * @throws JwtException
      */
     public function invalidate(Token $token, bool $forceForever = false): bool;
+
+    public function getPayloadFactory(): PayloadFactory;
+
+    public function getBlacklist(): Blacklist;
 }

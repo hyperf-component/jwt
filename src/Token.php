@@ -12,15 +12,9 @@ use HyperfComponent\Jwt\Contracts\TokenValidatorInterface;
 
 class Token
 {
-    /**
-     * @var string
-     */
-    private $value;
+    private string $value;
 
-    /**
-     * @var TokenValidatorInterface
-     */
-    private $validator;
+    private TokenValidatorInterface $validator;
 
     /**
      * Create a new JSON Web Token.

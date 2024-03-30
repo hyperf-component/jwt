@@ -11,19 +11,15 @@ trait KeyTrait
 {
     /**
      * The key.
-     *
-     * @var string
      */
-    protected $key = 'token';
+    protected string $key = 'token';
 
     /**
      * Set the key.
      *
-     * @param string $key
-     *
      * @return $this
      */
-    public function setKey($key)
+    public function setKey(string $key)
     {
         $this->key = $key;
 
@@ -32,10 +28,8 @@ trait KeyTrait
 
     /**
      * Get the key.
-     *
-     * @return string
      */
-    public function getKey()
+    public function getKey(): string
     {
         return $this->key;
     }

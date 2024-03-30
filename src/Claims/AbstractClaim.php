@@ -12,33 +12,25 @@ use Hyperf\Contract\Arrayable;
 use Hyperf\Contract\Jsonable;
 use HyperfComponent\Jwt\Contracts\ClaimInterface;
 use HyperfComponent\Jwt\Contracts\ManagerInterface;
+use HyperfComponent\Jwt\Manager;
 use JsonSerializable;
 
 abstract class AbstractClaim implements ClaimInterface, Arrayable, Jsonable, JsonSerializable
 {
     /**
      * The claim name.
-     *
-     * @var string
      */
-    protected $name;
+    protected string $name;
 
     /**
      * The claim value.
-     *
-     * @var mixed
      */
-    private $value;
+    private mixed $value;
 
-    /**
-     * @var Factory
-     */
-    private $factory;
+    /* @phpstan-ignore-next-line */
+    private Factory $factory;
 
-    /**
-     * @param mixed $value
-     */
-    public function __construct($value)
+    public function __construct(mixed $value)
     {
         $this->setValue($value);
     }
@@ -54,11 +46,9 @@ abstract class AbstractClaim implements ClaimInterface, Arrayable, Jsonable, Jso
     /**
      * Set the claim value, and call a validate method.
      *
-     * @param mixed $value
-     *
      * @return $this
      */
-    public function setValue($value)
+    public function setValue(mixed $value)
     {
         $this->value = $this->validateCreate($value);
 
@@ -67,10 +57,8 @@ abstract class AbstractClaim implements ClaimInterface, Arrayable, Jsonable, Jso
 
     /**
      * Get the claim value.
-     *
-     * @return mixed
      */
-    public function getValue()
+    public function getValue(): mixed
     {
         return $this->value;
     }
@@ -97,10 +85,8 @@ abstract class AbstractClaim implements ClaimInterface, Arrayable, Jsonable, Jso
 
     /**
      * Validate the claim in a standalone Claim context.
-     *
-     * @param mixed $value
      */
-    public function validateCreate($value)
+    public function validateCreate(mixed $value): mixed
     {
         return $value;
     }
@@ -144,6 +130,8 @@ abstract class AbstractClaim implements ClaimInterface, Arrayable, Jsonable, Jso
         if (! empty($this->factory)) {
             return $this->factory;
         }
-        return $this->factory = ApplicationContext::getContainer()->get(ManagerInterface::class)->getClaimFactory();
+        /** @var Manager $ManagerInterface */
+        $ManagerInterface = ApplicationContext::getContainer()->get(ManagerInterface::class);
+        return $this->factory = $ManagerInterface->getClaimFactory();
     }
 }

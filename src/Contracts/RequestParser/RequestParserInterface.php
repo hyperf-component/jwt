@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace HyperfComponent\Jwt\Contracts\RequestParser;
 
-use Psr\Http\Message\ServerRequestInterface;
+use Hyperf\HttpServer\Request;
 
 interface RequestParserInterface
 {
@@ -31,10 +31,10 @@ interface RequestParserInterface
      * Iterate through the parsers and attempt to retrieve
      * a value, otherwise return null.
      */
-    public function parseToken(ServerRequestInterface $request): ?string;
+    public function parseToken(Request $request): ?string;
 
     /**
      * Check whether a token exists in the chain.
      */
-    public function hasToken(ServerRequestInterface $request): bool;
+    public function hasToken(Request $request): bool;
 }

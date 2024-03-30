@@ -13,7 +13,7 @@ class NotBefore extends AbstractClaim
 {
     use DatetimeTrait;
 
-    protected $name = 'nbf';
+    protected string $name = 'nbf';
 
     public function validate(bool $ignoreExpired = false): bool
     {

@@ -14,19 +14,15 @@ interface ClaimInterface
     /**
      * Set the claim value, and call a validate method.
      *
-     * @param mixed $value
-     *
      * @return $this
      * @throws InvalidClaimException
      */
-    public function setValue($value);
+    public function setValue(mixed $value);
 
     /**
      * Get the claim value.
-     *
-     * @return mixed
      */
-    public function getValue();
+    public function getValue(): mixed;
 
     /**
      * Set the claim name.

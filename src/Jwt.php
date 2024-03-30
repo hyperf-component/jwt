@@ -9,6 +9,7 @@ namespace HyperfComponent\Jwt;
 
 use BadMethodCallException;
 use Hyperf\Context\Context;
+use Hyperf\HttpServer\Request;
 use HyperfComponent\Jwt\Contracts\JwtInterface;
 use HyperfComponent\Jwt\Contracts\JwtSubjectInterface;
 use HyperfComponent\Jwt\Contracts\ManagerInterface;
@@ -20,22 +21,13 @@ class Jwt implements JwtInterface
 {
     use CustomClaims;
 
-    protected Manager $manager;
-
-    protected RequestParserInterface $requestParser;
-
-    protected ServerRequestInterface $request;
-
     protected bool $lockSubject = true;
 
     public function __construct(
-        ManagerInterface $manager,
-        RequestParserInterface $requestParser,
-        ServerRequestInterface $request
+        protected ManagerInterface $manager,
+        protected RequestParserInterface $requestParser,
+        protected Request $request
     ) {
-        $this->manager = $manager;
-        $this->requestParser = $requestParser;
-        $this->request = $request;
     }
 
     /**
@@ -251,7 +243,7 @@ class Jwt implements JwtInterface
     /**
      * @return $this
      */
-    public function setRequest(ServerRequestInterface $request)
+    public function setRequest(Request $request)
     {
         $this->request = $request;
 
@@ -273,7 +265,7 @@ class Jwt implements JwtInterface
     /**
      * Get the Manager instance.
      */
-    public function getManager(): Manager
+    public function getManager(): ManagerInterface
     {
         return $this->manager;
     }

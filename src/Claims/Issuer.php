@@ -9,7 +9,7 @@ namespace HyperfComponent\Jwt\Claims;
 
 class Issuer extends AbstractClaim
 {
-    protected $name = 'iss';
+    protected string $name = 'iss';
 
     public function validate(bool $ignoreExpired = false): bool
     {

@@ -28,6 +28,7 @@ use Lcobucci\JWT\Signer\Key\InMemory;
 use Lcobucci\JWT\Signer\Rsa\Sha256 as RS256;
 use Lcobucci\JWT\Signer\Rsa\Sha384 as RS384;
 use Lcobucci\JWT\Signer\Rsa\Sha512 as RS512;
+use Lcobucci\JWT\Token\Plain;
 use Lcobucci\JWT\Token\RegisteredClaims;
 use Lcobucci\JWT\Validation\Constraint\SignedWith;
 
@@ -248,6 +249,7 @@ class Codec implements CodecInterface
     {
         $parser = $this->getParser();
         try {
+            /** @var Plain $jwt */
             $jwt = $parser->parse($token);
         } catch (Exception $e) {
             throw new TokenInvalidException('Could not decode token: ' . $e->getMessage(), $e->getCode(), $e);
@@ -285,7 +287,7 @@ class Codec implements CodecInterface
     protected function addClaim(Builder $builder, string $key, $value)
     {
         match ($key) {
-            HyperfComponent\Jwt\RegisteredClaims::ID => $builder->identifiedBy((string) $value),
+            RegisteredClaims::ID => $builder->identifiedBy((string) $value),
             RegisteredClaims::EXPIRATION_TIME => $builder->expiresAt(DateTimeImmutable::createFromFormat('U', (string) $value)),
             RegisteredClaims::NOT_BEFORE => $builder->canOnlyBeUsedAfter(DateTimeImmutable::createFromFormat('U', (string) $value)),
             RegisteredClaims::ISSUED_AT => $builder->issuedAt(DateTimeImmutable::createFromFormat('U', (string) $value)),

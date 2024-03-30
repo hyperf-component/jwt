@@ -18,31 +18,23 @@ class Factory
 {
     /**
      * The TTL.
-     *
-     * @var null|int
      */
-    protected $ttl;
+    protected ?int $ttl;
 
     /**
      * The refresh TTL.
-     *
-     * @var null|int
      */
-    protected $refreshTtl;
+    protected ?int $refreshTtl;
 
     /**
      * Time leeway in seconds.
-     *
-     * @var int
      */
-    protected $leeway;
+    protected int $leeway;
 
     /**
      * The classes map.
-     *
-     * @var array
      */
-    private $classMap = [
+    private array $classMap = [
         'aud' => Audience::class,
         'exp' => Expiration::class,
         'iat' => IssuedAt::class,
@@ -61,10 +53,8 @@ class Factory
 
     /**
      * Get the instance of the claim when passing the name and value.
-     *
-     * @param mixed $value
      */
-    public function get(string $name, $value): ClaimInterface
+    public function get(string $name, mixed $value): ClaimInterface
     {
         if ($this->has($name)) {
             $claim = make($this->classMap[$name], ['factory' => $this, 'value' => $value]);

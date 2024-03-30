@@ -118,7 +118,7 @@ class PayloadFactory
     /**
      * Build out the Claim DTO's.
      */
-    protected function resolveClaims(Collection $claims): Collection
+    protected function resolveClaims(Collection $claims)
     {
         return $claims->map(function ($value, $name) {
             return $value instanceof ClaimInterface ? $value : $this->claimFactory->get($name, $value);

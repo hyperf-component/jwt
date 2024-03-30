@@ -9,16 +9,14 @@ namespace HyperfComponent\Jwt\RequestParser\Handlers;
 
 use Hyperf\HttpServer\Request;
 use HyperfComponent\Jwt\Contracts\RequestParser\HandlerInterface as ParserContract;
-use Psr\Http\Message\ServerRequestInterface;
 
 class RouteParams implements ParserContract
 {
     use KeyTrait;
 
-    /**
-     * @param Request|ServerRequestInterface $request
-     */
-    public function parse(ServerRequestInterface $request): ?string
+    private string $key;
+
+    public function parse(Request $request): mixed
     {
         return $request->route($this->key);
     }

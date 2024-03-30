@@ -13,7 +13,7 @@ class Expiration extends AbstractClaim
 {
     use DatetimeTrait;
 
-    protected $name = 'exp';
+    protected string $name = 'exp';
 
     public function validate(bool $ignoreExpired = false): bool
     {

@@ -22,6 +22,9 @@ class InputSource implements ParserContract
             is_array($data = $request->getParsedBody()) ? $data : [],
             $this->key
         );
-        return empty($data) === null ? null : (string) $data;
+        if ($data === null || $data === '') {
+            return null;
+        }
+        return (string) $data;
     }
 }
